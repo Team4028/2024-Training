@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkRelativeEncoder.Type;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -23,6 +26,7 @@ public class Robot extends TimedRobot {
     // 🟪🟪🟪🟪 Declare a new CANSparkMax motor here 🟪🟪🟪🟪
 
     private RobotContainer m_robotContainer;
+    private RelativeEncoder encoder;
     private CommandXboxController driverController = new CommandXboxController(0);
     private static final int CAN_ID = 13;
     
@@ -35,6 +39,8 @@ public class Robot extends TimedRobot {
         m_robotContainer = new RobotContainer();
 
         // 🟪🟪🟪🟪 Initialize your CANSparkMax here (use the CAN_ID constant)... 🟪🟪🟪🟪
+
+        // 🟪🟪🟪🟪 Also initialize your Encoder. The Type enum you need has alredy been imported. 🟪🟪🟪🟪
     }
     @Override
     public void robotPeriodic() {
