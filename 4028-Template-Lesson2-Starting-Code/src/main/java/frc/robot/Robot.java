@@ -23,12 +23,18 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
+  private static final double ROTATIONS_TO_SPIN = 4;
+  private static final double TOLERANCE = .5;
+  private static final double VBUS = .3;
+
   private String m_autoSelected;
   private final SendableChooser<String> chooser = new SendableChooser<>();
 
   private CANSparkMax NicksEpicestMotor;
   private CommandXboxController NicksBoringControler;
   private RelativeEncoder Nicolisuperdupperencoderorder;
+
+  private double targetPosition = 0.0;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -94,24 +100,18 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if (NicksBoringControler.getLeftY() < -0.2) {
-        if (Nicolisuperdupperencoderorder.getPosition() >= -30.0) {
-            NicksEpicestMotor.set(NicksBoringControler.getLeftY());
-        }
-        else {
-            NicksEpicestMotor.set(0);
-        }
+    if (NicksBoringControler.getHID().getAButtonPressed()) {
+        targetPosition = Nicolisuperdupperencoderorder.getPosition() + ROTATIONS_TO_SPIN;
+    } else if (NicksBoringControler.getHID().getBButtonPressed()){
+        targetPosition = Nicolisuperdupperencoderorder.getPosition() - ROTATIONS_TO_SPIN;
     }
-    else if (NicksBoringControler.getLeftY() > 0.2) {
-        if(Nicolisuperdupperencoderorder.getPosition() <= 30.0) {
-            NicksEpicestMotor.set(NicksBoringControler.getLeftY());
-        }
-        else {
-            NicksEpicestMotor.set(0);
-        }
-    }
-    else {
+
+    if(Math.abs(Nicolisuperdupperencoderorder.getPosition() - targetPosition) < TOLERANCE){
         NicksEpicestMotor.set(0);
+    } else if(targetPosition > Nicolisuperdupperencoderorder.getPosition()){
+        NicksEpicestMotor.set(VBUS);
+    } else {
+        NicksEpicestMotor.set(-VBUS);
     }
     SmartDashboard.putNumber("Motor Revolutions", Nicolisuperdupperencoderorder.getPosition());
   }
