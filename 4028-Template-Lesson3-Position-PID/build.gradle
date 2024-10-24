@@ -105,6 +105,7 @@ spotless {
     java {
         removeUnusedImports()
         eclipse()
+        replaceRegex 'tts', '\t', '    '
         formatAnnotations()
     }
 }
