@@ -12,7 +12,6 @@ import com.revrobotics.SparkRelativeEncoder.Type;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 // 🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
@@ -48,9 +47,6 @@ public class Robot extends TimedRobot {
 
         // 🟪🟪🟪 Set the P, I, and D gains here (you'll need to tune them). 🟪🟪🟪
 
-        // 🟪🟪🟪 uncomment this line (don't worry about it): 🟪🟪🟪
-        // pid.setFeedbackDevice(encoder);
-
     }
 
     @Override
@@ -84,18 +80,18 @@ public class Robot extends TimedRobot {
         if (autonomousCommand != null) {
             autonomousCommand.cancel();
         }
-
-        driverController.a().onTrue(Commands.runOnce(() -> {
-            targetPosition = encoder.getPosition() + ROTATIONS_TO_SPIN;
-        }));
-
-        driverController.b().onTrue(Commands.runOnce(() -> {
-            targetPosition = encoder.getPosition() - ROTATIONS_TO_SPIN;
-        }));
     }
 
     @Override
     public void teleopPeriodic() {
+        if (driverController.getHID().getAButtonPressed()) {
+            targetPosition = encoder.getPosition() + ROTATIONS_TO_SPIN;
+        }
+
+        if (driverController.getHID().getBButtonPressed()) {
+            targetPosition = encoder.getPosition() - ROTATIONS_TO_SPIN;
+        }
+
         // 🟪🟪🟪 Here is where you will set the PID reference 🟪🟪🟪
         // 🟪🟪🟪 remember, use pid.setReference(); 🟪🟪🟪
         // 🟪🟪🟪 (with ControlType.kPosition) 🟪🟪🟪
