@@ -10,37 +10,26 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
-
 public class RobotContainer {
 
-    private final Gearbox gearbox = new Gearbox();
+	private final Gearbox gearbox = new Gearbox();
 
-    private static final double INFEED_VBUS = 0.3;
+	private final CommandXboxController driverController = new CommandXboxController(
+			OperatorConstants.kDriverControllerPort);
 
-    private final CommandXboxController driverController = new CommandXboxController(
-            OperatorConstants.kDriverControllerPort);
+	public RobotContainer() {
+		configureBindings();
+	}
 
-    
-    public RobotContainer() {
-        configureBindings();
-    }
+	private void configureBindings() {
 
+		// 🟪🟪🟪 Here is where you will bind buttons. 🟪🟪🟪
+		// 🟪🟪🟪 Bind the 'A' button to spin the motor 3 rotations forward (using gearbox.getPosition()) 🟪🟪🟪🟪
 
-    private void configureBindings() {
-        // 🟪🟪🟪                                                               🟪🟪🟪
-        // 🟪🟪🟪              Here is where you will bind buttons.             🟪🟪🟪
-        // 🟪🟪🟪 Bind the 'A' button to setting the target vbus to INFEED_VBUS 🟪🟪🟪
-        // 🟪🟪🟪    and then setting the state to INFEED on true, and then     🟪🟪🟪
-        // 🟪🟪🟪              setting the state to OFF on false.               🟪🟪🟪 
-        // 🟪🟪🟪                                                               🟪🟪🟪
-        // 🟪🟪🟪 Bind the 'B' button to setting the target vbus to INFEED_VBUS 🟪🟪🟪
-        // 🟪🟪🟪   and then setting the state to OUTFEED on true, and then     🟪🟪🟪
-        // 🟪🟪🟪              setting the state to OFF on false.               🟪🟪🟪
-        // 🟪🟪🟪                                                               🟪🟪🟪
-    }
+		// 🟪🟪🟪 Bind the 'B' button to spin the motor 5 rotations backward (using gearbox.getPosition()) 🟪🟪🟪🟪
+	}
 
-    
-    public Command getAutonomousCommand() {
-        return Commands.none();
-    }
+	public Command getAutonomousCommand() {
+		return Commands.none();
+	}
 }
