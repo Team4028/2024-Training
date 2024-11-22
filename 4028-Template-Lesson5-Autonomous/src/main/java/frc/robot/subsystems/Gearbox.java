@@ -54,7 +54,7 @@ public class Gearbox extends SubsystemBase {
                 motor.set(targetVbus);
                 break;
             case REVERSE :
-                motor.set(-targetVbus);
+                motor.set(targetVbus);
                 break;
         }
     }
