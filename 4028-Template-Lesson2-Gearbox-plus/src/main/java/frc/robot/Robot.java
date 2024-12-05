@@ -5,7 +5,6 @@
 package frc.robot;
 
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkRelativeEncoder.Type;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -13,11 +12,11 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 /**
- * 🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
- * 🟪🟪🟪🟪  TASK: Create a motor and spin it a fixed number of rotataions  🟪🟪🟪🟪
- * 🟪🟪🟪🟪        The motor should spin +6 rotations on a Y press and -5   🟪🟪🟪🟪
- * 🟪🟪🟪🟪        rotations on an X press. Finally, if the motor is at     🟪🟪🟪🟪
- * 🟪🟪🟪🟪        the target position, have it run forward at 0.1 vbus     🟪🟪🟪🟪
+ * 🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪 🟪🟪🟪🟪
+ * TASK: Create a motor and spin it a fixed number of rotataions 🟪🟪🟪🟪
+ * 🟪🟪🟪🟪 The motor should spin +6 rotations on a Y press and -5 🟪🟪🟪🟪
+ * 🟪🟪🟪🟪 rotations on an X press. Finally, if the motor is at 🟪🟪🟪🟪
+ * 🟪🟪🟪🟪 the target position, have it run forward at 0.1 vbus 🟪🟪🟪🟪
  * 🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
  */
 public class Robot extends TimedRobot {
@@ -29,18 +28,19 @@ public class Robot extends TimedRobot {
     private RelativeEncoder encoder;
     private CommandXboxController driverController = new CommandXboxController(0);
     private static final int CAN_ID = 13;
-    
 
-    // 🟪🟪🟪🟪 Declare your targetPosition and constants here (ROTATIONS_TO_SPIN, TOELRANCE, and CLOSED_LOOP_VBUS) 🟪🟪🟪🟪
-
+    // 🟪🟪🟪🟪 Declare your targetPosition and constants here (ROTATIONS_TO_SPIN,
+    // TOELRANCE, and CLOSED_LOOP_VBUS) 🟪🟪🟪🟪
 
     @Override
     public void robotInit() {
         m_robotContainer = new RobotContainer();
 
-        // 🟪🟪🟪🟪 Initialize your CANSparkMax here (use the CAN_ID constant)... 🟪🟪🟪🟪
+        // 🟪🟪🟪🟪 Initialize your CANSparkMax here (use the CAN_ID constant)...
+        // 🟪🟪🟪🟪
 
-        // 🟪🟪🟪🟪 Also initialize your Encoder. The Type enum you need has alredy been imported. 🟪🟪🟪🟪
+        // 🟪🟪🟪🟪 Also initialize your Encoder. The Type enum you need has alredy been
+        // imported. 🟪🟪🟪🟪
     }
     @Override
     public void robotPeriodic() {
@@ -78,13 +78,11 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         // 🟪🟪🟪🟪 Bind your buttons here... 🟪🟪🟪🟪
 
-        
-
         // 🟪🟪🟪🟪 Here is where you'll set the motor control 🟪🟪🟪🟪
-        // 🟪🟪🟪🟪 Remember, move it toward the target if     🟪🟪🟪🟪
-        // 🟪🟪🟪🟪 it's farther away from the targetPosition  🟪🟪🟪🟪
-        // 🟪🟪🟪🟪 than the threshold, otherwise run it at    🟪🟪🟪🟪
-        // 🟪🟪🟪🟪             10% vbus (0.1)                 🟪🟪🟪🟪
+        // 🟪🟪🟪🟪 Remember, move it toward the target if 🟪🟪🟪🟪
+        // 🟪🟪🟪🟪 it's farther away from the targetPosition 🟪🟪🟪🟪
+        // 🟪🟪🟪🟪 than the threshold, otherwise run it at 🟪🟪🟪🟪
+        // 🟪🟪🟪🟪 10% vbus (0.1) 🟪🟪🟪🟪
     }
 
     @Override
